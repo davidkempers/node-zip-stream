@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "archiver-utils": "~0.3.0",
-    "compress-commons": "~0.4.0",
+    "compress-commons": "git+https://github.com/davidkempers/node-compress-commons.git#develop",
     "lodash": "~3.10.1",
     "readable-stream": "~2.0.0"
   },

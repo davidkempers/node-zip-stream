@@ -61,7 +61,10 @@ ZipStream.prototype._normalizeFileData = function(data) {
     date: null,
     mode: null,
     store: this.options.store,
-    comment: ''
+    comment: '',
+    size: null,
+    compressesSize: null,
+    crc: -1
   });
 
   var isDir = data.type === 'directory';
@@ -131,6 +134,18 @@ ZipStream.prototype.entry = function(source, data, callback) {
 
   if (typeof data.mode === 'number') {
     entry.setUnixMode(data.mode);
+  }
+
+  if (data.compressedSize) {
+    entry.setCompressedSize(data.compressedSize);
+  }
+
+  if (data.size) {
+    entry.setSize(data.size);
+  }
+
+  if (data.crc) {
+    entry.setCrc(data.crc);
   }
 
   return ZipArchiveOutputStream.prototype.entry.call(this, entry, source, callback);
